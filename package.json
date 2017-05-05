@@ -1,0 +1,23 @@
+{
+  "name": "wechat-robot",
+  "version": "1.0.0",
+  "description": "wehcat robot",
+  "main": "app.js",
+  "scripts": {
+    "test": "node app.js"
+  },
+  "keywords": [
+    "wechat",
+    "robot"
+  ],
+  "author": "whis <wqcsimple@foxmail.com> (http://whis.wang/)",
+  "license": "ISC",
+  "dependencies": {
+    "finis": "0.0.2",
+    "locutus": "^2.0.8",
+    "qrcode-terminal": "^0.11.0",
+    "request": "^2.81.0",
+    "wechaty": "^0.8.6",
+    "winston": "^2.3.1"
+  }
+}
