@@ -5,6 +5,11 @@
 const Log = require('../lib/logger');
 const QrcodeTerminal  = require('qrcode-terminal')
 const Util = require('../lib/util');
+const fs = require('fs');
+
+
+// let autoReplyUserAlias = ['邱', '黄君坝'];
+let autoReplyUserAlias = [];
 
 let CoreApp = {
     bot: null,
@@ -31,16 +36,30 @@ let CoreApp = {
 
     message: (message) => {
         let room = message.room();
-        Log.info((room ? '[' + room.topic() + ']' : '')
-            + '<' + message.from().name() + '>'
-            + ':' + message.toStringDigest()
-        );
+        let sender = message.from();
+        let content = message.content();
+        let messageType = message.type();
 
+        let topic = room ? '[' + room.topic() + ']' : "";
+        let logMessage = `${topic} <${sender.name()}> : ${message.toStringDigest()}`;
+        Log.info(logMessage);
 
-        let alias = message.from().alias();
-        if (alias === '邱' && !message.self()) {
-            message.say('这是我的自动回复 --_-- ---- ' + Util.date('Y-m-d H:i:s'))
+        saveRawMessage(logMessage, topic || sender.alias() || sender.name());
+        // saveRawMessage(message.rawObj, topic || sender.name());
+
+        if (message.self()) {
+            // is myself message
+            return ;
         }
+
+        let alias = sender.alias();
+        if (autoReplyUserAlias.indexOf(alias) >= 0) {
+            let time = Util.date('Y-m-d H:i:s');
+            let fromName = message.from().name();
+            let replyMessage = `Hi ${fromName}, 我有事不在，有事请留言，这是我的自动回复 -_-, reply time: ${time}`;
+            message.say(replyMessage);
+        }
+
         // Log.info(message.from().name());
         // Log.info(message.from().alias());
     },
@@ -65,5 +84,16 @@ let CoreApp = {
         this.bot.say(exitMsg)
     }
 };
+
+function saveRawMessage(message, name) {
+    let filename = 'rawObj.log';
+    if (name) {
+        filename = name + '.log';
+    }
+    let obj = {};
+    obj['time'] = Util.date('Y-m-d H:i:s');
+    obj['message'] = message;
+    fs.writeFileSync(__dirname + '/../logs/' + filename, JSON.stringify(obj, null, '  ') + '\n\n', {flag: 'a'});
+}
 
 module.exports = CoreApp;
