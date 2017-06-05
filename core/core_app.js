@@ -6,10 +6,11 @@ const Log = require('../lib/logger');
 const QrcodeTerminal  = require('qrcode-terminal')
 const Util = require('../lib/util');
 const fs = require('fs');
-
+const Config = require('../config');
+const rp = require('request-promise');
 
 // let autoReplyUserAlias = ['邱', '黄君坝'];
-let autoReplyUserAlias = [];
+let autoReplyUserAlias = ['黄君坝', '尤建腾'];
 
 let CoreApp = {
     bot: null,
@@ -54,10 +55,31 @@ let CoreApp = {
 
         let alias = sender.alias();
         if (autoReplyUserAlias.indexOf(alias) >= 0) {
-            let time = Util.date('Y-m-d H:i:s');
-            let fromName = message.from().name();
-            let replyMessage = `Hi ${fromName}, 我有事不在，有事请留言，这是我的自动回复 -_-, reply time: ${time}`;
-            message.say(replyMessage);
+            let options = {
+                method: 'POST',
+                uri: Config.TU_LINK_ROBOT_URL,
+                body: {
+                    key: Config.TU_LINK_ROBOT_KEY,
+                    info: content
+                },
+                json: true
+            };
+            return rp(options)
+                .then((res) => {
+
+                    Log.info(res.list);
+
+                    if (res.url) {
+                        message.say(`${res.text}: ${res.url}`);
+                    }
+                    else
+                    {
+                        message.say(res.text);
+                    }
+                })
+                .catch(err => {
+                    message.say(err);
+                })
         }
 
         // Log.info(message.from().name());
