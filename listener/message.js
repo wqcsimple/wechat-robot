@@ -27,8 +27,8 @@ async function onMessage(message)
 
     if (message.self()) {
         // is myself message
-        Log.log('whis');
-        return ;
+        Log.info('is myself message');
+        return null;
     }
 
     // let alias = sender.alias();
