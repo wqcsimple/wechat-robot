@@ -8,8 +8,9 @@ const Config = require('../config');
 const rp = require('request-promise');
 const Util = require('../lib/util');
 
-// let autoReplyUserAlias = ['邱', '黄君坝'];
-let autoReplyUserAlias = [];
+let autoReplyUserAlias = ['邱', '黄君坝'];
+// let autoReplyUserAlias = ['黄君坝'];
+// let autoReplyUserAlias = [];
 
 async function onMessage(message)
 {
@@ -31,37 +32,26 @@ async function onMessage(message)
         return null;
     }
 
-    // let alias = sender.alias();
-    // if (autoReplyUserAlias.indexOf(alias) >= 0) {
-    //     let options = {
-    //         method: 'POST',
-    //         uri: Config.TU_LINK_ROBOT_URL,
-    //         body: {
-    //             key: Config.TU_LINK_ROBOT_KEY,
-    //             info: content
-    //         },
-    //         json: true
-    //     };
-    //     return rp(options)
-    //         .then((res) => {
-    //
-    //             Log.info(res.list);
-    //
-    //             if (res.url) {
-    //                 message.say(`${res.text}: ${res.url}`);
-    //             }
-    //             else
-    //             {
-    //                 message.say(res.text);
-    //             }
-    //         })
-    //         .catch(err => {
-    //             message.say(err);
-    //         })
-    // }
+    let alias = sender.alias();
+    if (autoReplyUserAlias.indexOf(alias) >= 0) {
+        let p1 = message.say('胡挺傻逼')
+        let p2 = message.say('胡挺傻逼');
+        let p3 = message.say('胡挺傻逼');
+        let p4 = message.say('胡挺傻逼');
+        let p5 = message.say('胡挺傻逼');
+        let p6 = message.say('胡挺傻逼');
+        let p7 = message.say('胡挺傻逼');
+        let p8 = message.say('胡挺傻逼');
+        let p9 = message.say('胡挺傻逼');
+        let p10 = message.say('胡挺傻逼');
 
-    // Log.info(message.from().name());
-    // Log.info(message.from().alias());
+        Promise.all([p1, p2, p3, p4, p5, p6, p7, p8, p9, p10]).then(() => {
+
+        })
+    }
+
+    Log.info(message.from().name());
+    Log.info(message.from().alias());
 }
 
 function saveRawMessage(message, name) {
