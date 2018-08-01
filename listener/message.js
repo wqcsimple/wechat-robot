@@ -33,25 +33,31 @@ async function onMessage(message)
     }
 
     let alias = sender.alias();
-    if (autoReplyUserAlias.indexOf(alias) >= 0) {
-        let p1 = message.say('胡挺傻逼')
-        let p2 = message.say('胡挺傻逼');
-        let p3 = message.say('胡挺傻逼');
-        let p4 = message.say('胡挺傻逼');
-        let p5 = message.say('胡挺傻逼');
-        let p6 = message.say('胡挺傻逼');
-        let p7 = message.say('胡挺傻逼');
-        let p8 = message.say('胡挺傻逼');
-        let p9 = message.say('胡挺傻逼');
-        let p10 = message.say('胡挺傻逼');
-
-        Promise.all([p1, p2, p3, p4, p5, p6, p7, p8, p9, p10]).then(() => {
-
-        })
+    let sendName = sender.name();
+    console.log(sendName, 'send name');
+    if (sendName.toString().indexOf("范不冰") > 0) {
+        let msgContent = "鸭子范，不要调皮";
+        message.say(msgContent);
     }
+    // if (autoReplyUserAlias.indexOf(alias) >= 0) {
+    //     let p1 = message.say('胡挺傻逼');
+    //     let p2 = message.say('胡挺傻逼');
+    //     let p3 = message.say('胡挺傻逼');
+    //     let p4 = message.say('胡挺傻逼');
+    //     let p5 = message.say('胡挺傻逼');
+    //     let p6 = message.say('胡挺傻逼');
+    //     let p7 = message.say('胡挺傻逼');
+    //     let p8 = message.say('胡挺傻逼');
+    //     let p9 = message.say('胡挺傻逼');
+    //     let p10 = message.say('胡挺傻逼');
+    //
+    //     Promise.all([p1, p2, p3, p4, p5, p6, p7, p8, p9, p10]).then(() => {
+    //
+    //     })
+    // }
 
-    Log.info(message.from().name());
-    Log.info(message.from().alias());
+    Log.info("from name: ", message.from().name());
+    Log.info("from alias: ", message.from().alias());
 }
 
 function saveRawMessage(message, name) {
