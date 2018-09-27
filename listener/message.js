@@ -16,14 +16,14 @@ async function onMessage(message)
 {
     let room = message.room();
     let sender = message.from();
-    let content = message.content();
+    let content = message.text();
     let messageType = message.type();
 
-    let topic = room ? '[' + room.topic() + ']' : "";
-    let logMessage = `${topic} <${sender.name()}> : ${message.toStringDigest()}`;
+    let topic = room ? '[' + await room.topic() + ']' : "";
+    let logMessage = `${topic} <${sender}> : ${content}`;
     Log.info(logMessage);
 
-    saveRawMessage(logMessage, topic || sender.alias() || sender.name());
+    saveRawMessage(logMessage, topic || sender.alias() || sender);
     // saveRawMessage(message.rawObj, topic || sender.name());
 
     if (message.self()) {
@@ -34,27 +34,12 @@ async function onMessage(message)
 
     let alias = sender.alias();
     let sendName = sender.name();
-    console.log(sendName, 'send name');
-    if (sendName.toString().indexOf("范不冰") > 0) {
-        let msgContent = "鸭子范，不要调皮";
-        message.say(msgContent);
+    Log.debug("send name -> ", sendName);
+    if (sendName.toString().indexOf("峰峰") >= 0) {
+        console.log('send ---- ');
+        let msgContent = "辣鸡P4";
+        await message.say(msgContent);
     }
-    // if (autoReplyUserAlias.indexOf(alias) >= 0) {
-    //     let p1 = message.say('胡挺傻逼');
-    //     let p2 = message.say('胡挺傻逼');
-    //     let p3 = message.say('胡挺傻逼');
-    //     let p4 = message.say('胡挺傻逼');
-    //     let p5 = message.say('胡挺傻逼');
-    //     let p6 = message.say('胡挺傻逼');
-    //     let p7 = message.say('胡挺傻逼');
-    //     let p8 = message.say('胡挺傻逼');
-    //     let p9 = message.say('胡挺傻逼');
-    //     let p10 = message.say('胡挺傻逼');
-    //
-    //     Promise.all([p1, p2, p3, p4, p5, p6, p7, p8, p9, p10]).then(() => {
-    //
-    //     })
-    // }
 
     Log.info("from name: ", message.from().name());
     Log.info("from alias: ", message.from().alias());

@@ -103,7 +103,7 @@ let CoreApp = {
     finish: (code, signal, error) => {
         let exitMsg = `Wechaty exit ${code} because of ${signal} `;
         Log.d(exitMsg);
-        this.bot.say(exitMsg)
+        // this.bot.say(exitMsg)
     }
 };
 

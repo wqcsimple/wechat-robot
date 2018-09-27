@@ -13,7 +13,8 @@ const isProd = process.env.NODE_ENV === 'production';
 
 const bot = Wechaty.instance();
 
-const EVENT_LIST = ['scan', 'logout', 'login', 'friend', 'room-join', 'room-leave', 'room-topic', 'message', 'heartbeat', 'error'];
+// const EVENT_LIST = ['scan', 'logout', 'login', 'room-join', 'room-leave', 'room-topic', 'message', 'heartbeat', 'error'];
+const EVENT_LIST = ['scan', 'logout', 'login', 'message','error'];
 
 // Load listener
 
@@ -31,10 +32,11 @@ const loadListener = (evt) => {
         }
     }
     return fn;
-}
+};
 
 // purge require cache
 const purgeCache = (moduleName) => {
+    console.log('module name -> ', moduleName)
     var mod = require.resolve(moduleName);
     if (mod && ((mod = require.cache[mod]) !== undefined)) {
         (function traverse(mod) {
@@ -90,8 +92,11 @@ EVENT_LIST.forEach(evt => {
     bot.on(evt, eventHandler[evt]);
 });
 
-bot.init()
-    .catch(err => CoreApp.errorCatch(err));
+bot.start()
+    .catch(err =>
 
-finis((code, signal, error) => CoreApp.finish(code, signal, error));
+        CoreApp.errorCatch(err)
+    );
+
+// finis((code, signal, error) => CoreApp.finish(code, signal, error));
 

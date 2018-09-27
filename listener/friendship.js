@@ -4,7 +4,7 @@
  */
 const Log = require('../lib/logger');
 
-async function onFriend(contact, request) {
+async function onFriendShip(contact, request) {
     if (request) {
         let name = contact.name();
         await request.accept();
@@ -13,4 +13,4 @@ async function onFriend(contact, request) {
     }
 }
 
-module.exports = onFriend;
+module.exports = onFriendShip;

@@ -14,12 +14,16 @@
   "license": "ISC",
   "dependencies": {
     "finis": "0.0.2",
-    "locutus": "^2.0.8",
-    "node-watch": "^0.5.4",
-    "qrcode-terminal": "^0.11.0",
-    "request": "^2.81.0",
-    "request-promise": "^4.2.1",
-    "wechaty": "^0.8.2",
+    "locutus": "^2.0.10",
+    "node-watch": "^0.5.8",
+    "npm-check-updates": "^2.14.2",
+    "qrcode-terminal": "^0.12.0",
+    "request": "^2.88.0",
+    "request-promise": "^4.2.2",
+    "wechaty": "^0.22.4",
     "winston": "^2.3.1"
+  },
+  "devDependencies": {
+    "puppeteer": "^1.8.0"
   }
 }
