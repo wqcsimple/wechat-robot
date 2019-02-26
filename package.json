@@ -13,14 +13,14 @@
   "author": "whis <wqcsimple@foxmail.com> (http://whis.wang/)",
   "license": "ISC",
   "dependencies": {
-    "finis": "0.0.2",
+    "finis": "0.4.3",
     "locutus": "^2.0.10",
-    "node-watch": "^0.5.8",
+    "node-watch": "^0.6.0",
     "npm-check-updates": "^2.15.0",
     "qrcode-terminal": "^0.12.0",
     "request": "^2.88.0",
     "request-promise": "^4.2.2",
-    "wechaty": "^0.22.4",
+    "wechaty": "^0.22.6",
     "winston": "^2.3.1"
   },
   "devDependencies": {
