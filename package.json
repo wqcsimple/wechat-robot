@@ -16,7 +16,7 @@
     "finis": "0.0.2",
     "locutus": "^2.0.10",
     "node-watch": "^0.5.8",
-    "npm-check-updates": "^2.14.2",
+    "npm-check-updates": "^2.15.0",
     "qrcode-terminal": "^0.12.0",
     "request": "^2.88.0",
     "request-promise": "^4.2.2",
